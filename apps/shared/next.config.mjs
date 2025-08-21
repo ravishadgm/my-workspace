@@ -1,25 +1,31 @@
-// apps/shared/next.config.mjs
-import NextFederationPlugin from '@module-federation/nextjs-mf';
+
+import NextFederationPlugin from "@module-federation/nextjs-mf";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'shared',
-        filename: 'static/chunks/remoteEntry.js',
+        name: "shared",
+        filename: "static/chunks/remoteEntry.js",
         exposes: {
-          './Header': './src/components/Header.js', // 👈 you can expose more components here
+          "./Header": "./src/layout/Header/Header.js", 
         },
         shared: {
           react: { singleton: true, requiredVersion: false },
-          'react-dom': { singleton: true, requiredVersion: false },
+          "react-dom": { singleton: true, requiredVersion: false },
         },
       })
     );
     return config;
   },
-  output: 'standalone',
+  sassOptions: {
+    additionalData: `
+    @use "../../styles/variable" as *;
+  `,
+  },
+
+  output: "standalone",
 };
 
 export default nextConfig;

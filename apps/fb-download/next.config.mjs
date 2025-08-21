@@ -1,4 +1,4 @@
-// apps/fb-download/next.config.mjs
+
 import NextFederationPlugin from '@module-federation/nextjs-mf';
 
 const nextConfig = {
@@ -10,7 +10,6 @@ const nextConfig = {
         remotes: {
           shared: `shared@http://localhost:3002/_next/static/chunks/remoteEntry.js`,
         },
-        // ❌ no exposes needed since fb-download doesn't share anything
         shared: {
           react: { singleton: true, requiredVersion: false },
           'react-dom': { singleton: true, requiredVersion: false },
