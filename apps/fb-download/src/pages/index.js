@@ -1,17 +1,13 @@
 import dynamic from "next/dynamic";
-
-// import Header dynamically from shared remote
+import Images from "../../public/images/index";
 const Header = dynamic(() => import("shared/Header"), { ssr: false });
 
 export default function Home() {
   return (
     <div>
-      {/* Federated Header */}
-      <Header />
+      <Header logo={Images.Logo} />
 
-<h1>fdgdf</h1>
-
-      {/* Federated Footer */}
+    
     </div>
   );
 }

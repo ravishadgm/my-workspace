@@ -1,4 +1,3 @@
-
 import NextFederationPlugin from "@module-federation/nextjs-mf";
 
 /** @type {import('next').NextConfig} */
@@ -9,7 +8,7 @@ const nextConfig = {
         name: "shared",
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./Header": "./src/layout/Header/Header.js", 
+          "./Shared": "./src/index.js",
         },
         shared: {
           react: { singleton: true, requiredVersion: false },
@@ -20,11 +19,8 @@ const nextConfig = {
     return config;
   },
   sassOptions: {
-    additionalData: `
-    @use "../../styles/variable" as *;
-  `,
+    additionalData: `@use "../../styles/variable" as *;`,
   },
-
   output: "standalone",
 };
 

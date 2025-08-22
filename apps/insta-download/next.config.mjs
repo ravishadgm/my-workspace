@@ -5,6 +5,7 @@ const nextConfig = {
     config.plugins.push(
       new NextFederationPlugin({
         name: 'instaDownload',
+        
         filename: 'static/chunks/remoteEntry.js',
         remotes: {
           shared: `shared@http://localhost:3002/_next/static/chunks/remoteEntry.js`, 
