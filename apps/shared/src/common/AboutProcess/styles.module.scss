@@ -94,7 +94,7 @@
   text-align: center;
   padding-bottom:20px;
   border-bottom: 2px solid transparent;
-  border-image:$gradient-color 1;
+  border-image:var(--gradient-color) 1;
 
   @media(max-width:480px){
     font-size: 24px;

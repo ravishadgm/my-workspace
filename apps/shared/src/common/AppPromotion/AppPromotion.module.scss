@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  background: $gradient-color;
+  background: var(--gradient-color);
   border-radius: 10px;
   color: $color-white;
 

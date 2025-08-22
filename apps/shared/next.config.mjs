@@ -8,7 +8,10 @@ const nextConfig = {
         name: "shared",
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./Shared": "./src/index.js",
+          "./common": "./src/common/index.js",
+          "./layout": "./src/layout/index.js",
+          "./components": "./src/components/index.js",
+          "./other": "./src/other/index.js",
         },
         shared: {
           react: { singleton: true, requiredVersion: false },
