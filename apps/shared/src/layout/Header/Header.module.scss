@@ -1,7 +1,7 @@
 
 .header {
   width: 100%;
-  padding: 0px 20px;
+  padding: 20px;
 }
 
 .container {
@@ -13,12 +13,12 @@
 }
 
 .logo {
-  
-  max-width: 150px;
+  height: 27px;
+  max-width: var(--header-logo-width);
 }
 
 .logoImage {
-  object-fit: contain;
+ height: 100%;
 }
  
 .link {
