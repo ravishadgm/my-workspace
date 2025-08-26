@@ -46,11 +46,9 @@ export default function Downloader({
     //   setError("Please enter a URL");
     //   return;
     // }
-
     // setLoading(true);
     // setError("");
     // setMediaData(null);
-
     // try {
     //   const data = await downloadFacebookMedia(url);
     //   setMediaData(data);

@@ -33,7 +33,7 @@ export default function Home() {
         heading="How to download from Instagram?"
         smallDescription="You must follow these three easy steps to download video, reels, and photo from Instagram (IG, Insta). Follow the simple steps below."
         steps={steps}
-      />
+      />      
       <WhyUs />
       <DownloadDescription
         heading="InstaDl.app features"
