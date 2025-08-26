@@ -27,46 +27,53 @@
 }
 
 .leftSection {
+          
   @media(max-width:973px){
     order:2;
+  }
+
+  @media(max-width:480px){
+     margin: 20px 0px;
   }
 }
 
 .imageWrapper {
   position: absolute;
   left: -5px;
-  top: -268px; 
-  width: 500px; 
-  height: 800px;
+  top: -67px; 
   z-index: 10;
 
   @media(max-width:1080px){
-    top:-273px;
+    top:-74px;
   }
 
   @media (max-width: 1019px) {
     left: 0px;
-    top: 25px; 
-    height: 280px;
-    
   }
 
   @media(max-width:973px){
     position: relative;
-    top:auto;
+    top:0px;
     margin: 0 auto;
   }
 
+
    @media (max-width: 480px) {
-    width: 280px;
-    height: 300px;
-    transform: translateY(50px);
- 
+    max-width: 300px;
+    max-height:275px;
   }
 }
 
 .phoneImage {
   object-fit: contain;
+
+  @media(max-width:1019px){
+    margin:0 auto;
+  }
+
+   @media (max-width: 480px) {
+    max-height:270px;
+  }
 }
 
 .content {
@@ -120,8 +127,8 @@
 
   &:hover {
     // background: #f8f8f8;
-     background: #eaeaea;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: #eaeaea;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
   @media (max-width: 973px) {

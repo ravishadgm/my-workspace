@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FaDownload } from "@/icons/index";
 import styles from "./AppPromotion.module.scss";
 
-export default function AppPromotion({mobileImg}) {
+export default function AppPromotion({ mobileImg, appHeight = 400 }) {
   return (
     <section
       className={styles.promo}
@@ -16,13 +16,16 @@ export default function AppPromotion({mobileImg}) {
       <div className={styles.container}>
         <div className={styles.leftSection}>
           <div className={styles.imageWrapper}>
-         {mobileImg &&   <Image
-              src={mobileImg}
-              alt="Mobile phone displaying Instagram app interface with downloaded content"
-              fill
-              className={styles.phoneImage}
-              priority
-            />}
+            {mobileImg && (
+              <Image
+                src={mobileImg}
+                alt="Mobile phone displaying Instagram app interface with downloaded content"
+                height={appHeight}
+                width={500}
+                className={styles.phoneImage}
+                priority
+              />
+            )}
           </div>
         </div>
         <div className={styles.content}>

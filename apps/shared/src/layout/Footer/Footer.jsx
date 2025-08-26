@@ -4,7 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Footer.module.scss";
 
-export default function Footer({ logo, mainLinks = [], legalLinks = [] }) {
+export default function Footer({
+  logo,
+  mainLinks = [],
+  legalLinks = [],
+  logoWidth = 100,
+  logoHeight = 25,
+}) {
   const currentYear = new Date().getFullYear();
 
   const renderLinks = (links) =>
@@ -28,7 +34,12 @@ export default function Footer({ logo, mainLinks = [], legalLinks = [] }) {
         {logo && (
           <div className={styles.logo}>
             <Link href="/" aria-label="Homepage">
-              <Image src={logo} alt="Logo" width={100} height={25} />
+              <Image
+                src={logo}
+                alt="Logo"
+                width={logoWidth}
+                height={logoHeight}
+              />
             </Link>
           </div>
         )}
@@ -50,7 +61,9 @@ export default function Footer({ logo, mainLinks = [], legalLinks = [] }) {
 
       {/* Copyright */}
       <div className={styles.copyright}>
-        <span aria-label={`Copyright ${currentYear} Company. All rights reserved.`}>
+        <span
+          aria-label={`Copyright ${currentYear} Company. All rights reserved.`}
+        >
           © 2024–{currentYear} Company. All rights reserved.
         </span>
       </div>

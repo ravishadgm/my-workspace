@@ -1,6 +1,7 @@
 .footerRoot {
   background-color: #f5f9ff;
-  border-top: 1px solid #e18ece;
+  // border-top: 1px solid #e18ece;
+  border-top: 1px solid var(--footer-border, #e18ece);
   padding: 32px 0;
   margin-top: auto;
 }
