@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import styles from "./Footer.module.scss";
 
@@ -10,15 +9,26 @@ export default function Footer({
   legalLinks = [],
   logoWidth = 100,
   logoHeight = 25,
+  onNavigate, // 👈 injected from host
 }) {
   const currentYear = new Date().getFullYear();
 
   const renderLinks = (links) =>
     links.map((link, index) => (
       <span key={link.href} className={styles.linkWrapper}>
-        <Link href={link.href} className={styles.link}>
+        <a
+          href={link.href}
+          className={styles.link}
+          aria-label={link.label}
+          onClick={(e) => {
+            if (onNavigate) {
+              e.preventDefault();
+              onNavigate(link.href);
+            }
+          }}
+        >
           {link.label}
-        </Link>
+        </a>
         {index < links.length - 1 && (
           <span className={styles.separator} aria-hidden="true">
             |
@@ -33,34 +43,45 @@ export default function Footer({
         {/* Logo */}
         {logo && (
           <div className={styles.logo}>
-            <Link href="/" aria-label="Homepage">
-              <Image src={logo} alt="Logo" width={100} height={25} priority />
-            </Link>
+            <a
+              href="/"
+              aria-label="Homepage"
+              onClick={(e) => {
+                if (onNavigate) {
+                  e.preventDefault();
+                  onNavigate("/");
+                }
+              }}
+            >
+              <Image
+                src={logo}
+                alt="Logo"
+                width={logoWidth}
+                height={logoHeight}
+                priority
+              />
+            </a>
           </div>
         )}
 
-        {/* Main Navigation */}
+        {/* Main navigation */}
         {mainLinks.length > 0 && (
-          <div className={styles.navLinks} aria-label="Main navigation">
+          <nav className={styles.navLinks} aria-label="Main navigation">
             {renderLinks(mainLinks)}
-          </div>
+          </nav>
         )}
 
-        {/* Legal & Support */}
+        {/* Legal links */}
         {legalLinks.length > 0 && (
-          <div className={styles.footerLinks} aria-label="Legal and support">
+          <nav className={styles.footerLinks} aria-label="Legal and support">
             {renderLinks(legalLinks)}
-          </div>
+          </nav>
         )}
       </div>
 
       {/* Copyright */}
       <div className={styles.copyright}>
-        <span
-          aria-label={`Copyright ${currentYear} Company. All rights reserved.`}
-        >
-          © 2024–{currentYear} Company. All rights reserved.
-        </span>
+        <span>© 2024–{currentYear} Company. All rights reserved.</span>
       </div>
     </footer>
   );

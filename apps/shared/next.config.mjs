@@ -14,11 +14,25 @@ const nextConfig = {
           "./other": "./src/other/index.js",
         },
         shared: {
-          react: { singleton: true, requiredVersion: false },
-          "react-dom": { singleton: true, requiredVersion: false },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: false,
+          },
+          "react-dom": {
+            singleton: true,
+            eager: true,
+            requiredVersion: false,
+          },
+          next: {
+            singleton: true,
+            eager: true,
+            requiredVersion: false,
+          },
         },
       })
     );
+
     return config;
   },
   sassOptions: {
