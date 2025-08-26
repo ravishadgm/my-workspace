@@ -28,10 +28,16 @@ export default function Footer({ logo, mainLinks = [], legalLinks = [] }) {
         {logo && (
           <div className={styles.logo}>
             <Link href="/" aria-label="Homepage">
-              <Image src={logo} alt="Logo" width={100} height={25} />
+              <Image
+                src={logo}
+                alt="Logo"
+                width={100}
+                height={25}
+                priority
+              />
             </Link>
           </div>
-        )}
+        )}  
 
         {/* Main Navigation */}
         {mainLinks.length > 0 && (

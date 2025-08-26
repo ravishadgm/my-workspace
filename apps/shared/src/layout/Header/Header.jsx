@@ -9,7 +9,7 @@ export default function Header({ logo }) {
       <div className={styles.container}>
         <Link href="/" className={styles.logo} aria-label="Homepage">
           {logo && (
-            <Image src={logo} alt="Logo" fill className={styles.logoImage} />
+            <Image src={logo} alt="Logo" className={styles.logoImage} />
           )}
         </Link>
         <nav aria-label="Header navigation">
