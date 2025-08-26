@@ -34,12 +34,7 @@ export default function Footer({
         {logo && (
           <div className={styles.logo}>
             <Link href="/" aria-label="Homepage">
-              <Image
-                src={logo}
-                alt="Logo"
-                width={logoWidth}
-                height={logoHeight}
-              />
+              <Image src={logo} alt="Logo" width={100} height={25} priority />
             </Link>
           </div>
         )}
