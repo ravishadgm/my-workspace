@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PostHeader from "@/instaModal/ui/PostHeader/PostHeader";
-import MediaSwiper from "@/instaModal/ui/MediaSwiper/MediaSwiper";
-import BottomActivityPanel from "@/instaModal/ui/BottomActivityPanel/BottomActivityPanel";
-import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
+import PostHeader from "@/facebookModal/ui/PostHeader/PostHeader";
+import MediaSwiper from "@/facebookModal/ui/MediaSwiper/MediaSwiper";
+import BottomActivityPanel from "@/facebookModal/ui/BottomActivityPanel/BottomActivityPanel";
+import MediaGallery from "@/facebookModal/ui/MediaGallery/MediaGallery";
 import styles from "./PhotoPostPreview.module.scss";
 
 export default function PhotoPostPreview({ userEnteredUrl, data }) {

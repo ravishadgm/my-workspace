@@ -11,7 +11,7 @@ import {
   FaqSection,
 } from "../shared";
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
-import { downloadInstagramMedia } from "@/utils/api";
+import { downloadFacebookMedia } from "@/utils/api";
 import { steps, faqs } from "@/dataStore/faqContent";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
         subtitle="Download Instagram Videos, Reels, Stories & Photos"
         mainLinks={mainNavLinks}
         previewComponentMap={previewComponentMap}
-        downloadHandler={downloadInstagramMedia}
+        downloadFacebookMedia={downloadFacebookMedia}
       />
       <AboutProcess
         image={Images.Download}
@@ -33,7 +33,7 @@ export default function Home() {
         heading="How to download from Instagram?"
         smallDescription="You must follow these three easy steps to download video, reels, and photo from Instagram (IG, Insta). Follow the simple steps below."
         steps={steps}
-      />      
+      />
       <WhyUs />
       <DownloadDescription
         heading="InstaDl.app features"

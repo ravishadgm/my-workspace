@@ -1,12 +1,12 @@
 "use client";
+
 import React from "react";
 import PostCaption from "@/instaModal/ui/PostCaption/PostCaption";
-import { handleShare, handleShareAll } from "@/instaModal/hooks/share/share";
-import {
-  handleDownload,
-  handleDownloadAll,
-} from "@/instaModal/hooks/download/download";
-import { FaRegHeart, FaRegComment } from "@/icons/index";
+import { formatNumber } from "@/instaModal/hooks/formatNumber/formatNumber";
+import { handleShareAll } from "@/instaModal/hooks/share/share";
+import { handleDownloadAll } from "@/instaModal/hooks/download/download";
+import { FaRegHeart, FaRegComment, FaRegEye } from "@/icons/index"; // 👈 added FaRegEye for views
+
 import styles from "./BottomActivityPanel.module.scss";
 
 export default function BottomActivityPanel({ data }) {
@@ -14,36 +14,72 @@ export default function BottomActivityPanel({ data }) {
     mediaUrls = [],
     likes = 0,
     views = 0,
-    comments = 0,
     username,
     caption,
+    comments = 0,
   } = data;
 
-  const displayUsername = username || "instagram_user";
+  const hasLikes = likes > 0;
+  const hasViews = views > 0;
+  const hasComments = comments > 0;
+
+  const formattedLikes = hasLikes ? formatNumber(likes) : null;
+  const formattedViews = hasViews ? formatNumber(views) : null;
+  const formattedComments = hasComments ? formatNumber(comments) : null;
+
+  const hasCounters = formattedLikes || formattedViews || formattedComments;
+  const hasCaption = Boolean(caption);
 
   return (
     <div className={styles.bottomAcitivity}>
-      <div className={styles.counterSection}>
-        {caption && (
-          <PostCaption username={displayUsername} caption={caption} />
-        )}
-
-        <div className={styles.shareDownload}>
-          <button
-            className={styles.shareBtn}
-            onClick={() => handleDownloadAll(mediaUrls)}
-          >
-            {mediaUrls.length > 1
-              ? `Download All (${mediaUrls.length})`
-              : "Download"}
-          </button>
-          <button
-            className={styles.shareBtn}
-            onClick={() => handleShareAll(mediaUrls)}
-          >
-            {mediaUrls.length > 1 ? `Share All (${mediaUrls.length})` : "Share"}
-          </button>
+      {(hasLikes || hasViews || hasComments) && (
+        <div className={styles.acitivityDetails}>
+          <div className={styles.insideAcitivity}>
+            {hasLikes && <FaRegHeart />}
+            {hasViews && <FaRegEye />}
+            {hasComments && <FaRegComment />}
+          </div>
         </div>
+      )}
+
+      {/* counters text */}
+      {hasCounters && (
+        <div className={styles.counterSection}>
+          <p>
+            {formattedLikes && `${formattedLikes} likes`}
+            {formattedLikes && formattedViews ? " • " : ""}
+            {formattedViews && `${formattedViews} views`}
+            {(formattedLikes || formattedViews) && formattedComments
+              ? " • "
+              : ""}
+            {formattedComments && `${formattedComments} comments`}
+          </p>
+        </div>
+      )}
+
+      {hasCaption && (
+        <PostCaption
+          username={username ?? "instagram_user"}
+          caption={caption}
+        />
+      )}
+
+      {/* download / share buttons always visible */}
+      <div className={styles.shareDownload}>
+        <button
+          className={styles.shareBtn}
+          onClick={() => handleDownloadAll(mediaUrls)}
+        >
+          {mediaUrls.length > 1
+            ? `Download All (${mediaUrls.length})`
+            : "Download"}
+        </button>
+        <button
+          className={styles.shareBtn}
+          onClick={() => handleShareAll(mediaUrls)}
+        >
+          {mediaUrls.length > 1 ? `Share All (${mediaUrls.length})` : "Share"}
+        </button>
       </div>
     </div>
   );
