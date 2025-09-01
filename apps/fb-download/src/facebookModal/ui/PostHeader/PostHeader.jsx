@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./PostHeader.module.scss";
 
 export default function PostHeader({ username, avatar }) {
-  const displayName = username || "Facebook_User";
+  const displayName = username || "Instagram_User";
 
   let initials = "";
-  if (displayName === "Facebook_User") {
+  if (displayName === "Instagram_User") {
     initials = "IU";
   } else {
     initials = displayName

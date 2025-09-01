@@ -1,5 +1,4 @@
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
-import Images from "../../public/images/index";
 import {
   Header,
   Footer,
@@ -13,6 +12,7 @@ import {
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
 import { downloadFacebookMedia } from "@/utils/api";
 import { steps, faqs } from "@/dataStore/faqContent";
+import Images from "../../public/images/index";
 
 export default function Home() {
   return (

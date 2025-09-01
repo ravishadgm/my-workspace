@@ -1,9 +1,5 @@
 import Images from "@/utils/images";
 import {
-    carouselSteps,
-    carouselFaq,
-    igtvSteps,
-    igtvFaq,
     photoSteps,
     photoFaq,
     videoSteps,
@@ -12,8 +8,6 @@ import {
     reelsSteps,
     storySteps,
     storyFaq,
-    viewSteps,
-    viewFaq,
 } from "@/dataStore/faqContent";
 
 export const categoryContent = {

@@ -5,12 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
+// import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "shared/icons/index";
 import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
 import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
-import { handleShareAll } from "@/instaModal/hooks/share/share";
-import { handleDownloadAll } from "@/instaModal/hooks/download/download";
+import { handleShareAll, handleDownloadAll } from "shared/hooks";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
 import styles from "./StoryPreview.module.scss";
 
 export default function StoryPreview({ stories = [] }) {

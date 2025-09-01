@@ -3,8 +3,7 @@
 import { isVideo } from "@/utils/constHelper";
 import MediaImage from "@/instaModal/ui/MediaImage/MediaImage";
 import MediaVideo from "@/instaModal/ui/MediaVideo/MediaVideo";
-import { handleShare } from "@/instaModal/hooks/share/share";
-import { handleDownload } from "@/instaModal/hooks/download/download";
+import { handleShare, handleDownload } from "shared/hooks";
 import styles from "./MediaGallery.module.scss";
 
 export default function MediaGallery({ mediaUrls = [] }) {

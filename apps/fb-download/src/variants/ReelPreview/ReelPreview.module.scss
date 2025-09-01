@@ -1,11 +1,11 @@
 @import "../../styles/variables";
- 
+
 .reelContainer {
   position: relative;
   width: 100%;
   max-width: 450px;
   height: 500px;
-  background-color: $black-color;
+  background: $black-color;
   margin: 0 auto;
 }
 

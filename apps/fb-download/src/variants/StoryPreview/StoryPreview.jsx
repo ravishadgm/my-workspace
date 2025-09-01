@@ -5,7 +5,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "shared/icons";
 import MediaGallery from "@/facebookModal/ui/MediaGallery/MediaGallery";
 import SwiperNavigation from "@/facebookModal/ui/SwiperNavigation/SwiperNavigation";
 import BottomActivityPanel from "@/facebookModal/ui/BottomActivityPanel/BottomActivityPanel";

@@ -3,8 +3,7 @@
 import { isVideo } from "@/utils/constHelper";
 import MediaImage from "@/facebookModal/ui/MediaImage/MediaImage";
 import MediaVideo from "@/facebookModal/ui/MediaVideo/MediaVideo";
-import { handleShare } from "@/facebookModal/hooks/share/share";
-import { handleDownload } from "@/facebookModal/hooks/download/download";
+import { handleShare, handleDownload } from "shared/hooks";
 import styles from "./MediaGallery.module.scss";
 
 export default function MediaGallery({ mediaUrls = [] }) {

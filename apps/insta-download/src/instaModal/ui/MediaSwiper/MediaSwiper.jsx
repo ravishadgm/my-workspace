@@ -1,9 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { useState } from "react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -32,13 +31,9 @@ export default function MediaSwiper({ mediaUrls = [], onSlideChange }) {
           <SwiperSlide key={idx}>
             <div className={styles.imageWrapper}>
               {isVideo(url) ? (
-                <MediaVideo src={url}  />
+                <MediaVideo src={url} />
               ) : (
-                <MediaImage
-                  src={url}
-                  alt={`Slide ${idx + 1}`}
-                  
-                />
+                <MediaImage src={url} alt={`Slide ${idx + 1}`} />
               )}
             </div>
           </SwiperSlide>

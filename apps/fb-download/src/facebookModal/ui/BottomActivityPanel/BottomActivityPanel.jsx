@@ -1,12 +1,9 @@
 "use client";
+
 import React from "react";
 import PostCaption from "@/facebookModal/ui/PostCaption/PostCaption";
-import { handleShare, handleShareAll } from "@/facebookModal/hooks/share/share";
-import {
-  handleDownload,
-  handleDownloadAll,
-} from "@/facebookModal/hooks/download/download";
-import { FaRegHeart, FaRegComment } from "@/icons/index";
+import { handleShareAll, handleDownloadAll } from "shared/hooks";
+import { FaRegHeart, FaRegComment } from "shared/icons";
 import styles from "./BottomActivityPanel.module.scss";
 
 export default function BottomActivityPanel({ data }) {

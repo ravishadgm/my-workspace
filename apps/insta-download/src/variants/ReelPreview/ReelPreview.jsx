@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
-import { handleShare } from "@/instaModal/hooks/share/share";
-import { handleDownload } from "@/instaModal/hooks/download/download";
+import { handleShare, handleDownload } from "shared/hooks";
 import { FaVolumeUp, FaVolumeMute } from "@/icons/index"; // import icons
 import styles from "./ReelPreview.module.scss";
 

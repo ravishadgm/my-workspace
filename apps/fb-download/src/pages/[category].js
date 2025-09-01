@@ -26,7 +26,7 @@ export default function CategoryPage({ content }) {
                 subtitle={content.subtitle}
                 mainLinks={mainNavLinks}
                 previewComponentMap={previewComponentMap}
-                downloadHandler={downloadFacebookMedia}
+                downloadFacebookMedia={downloadFacebookMedia}
             />
             <AboutProcess
                 image={content.about.image}

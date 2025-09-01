@@ -21,15 +21,11 @@ export default async function handler(req, res) {
     }
 
     try {
-        const range = req.headers.range || "";
-        const userAgent =
-            req.headers["user-agent"] ||
-            "Mozilla/5.0 (compatible; InstagramDownloader/1.0)";
-
         const response = await fetch(targetUrl, {
             headers: {
-                Range: range,
-                "User-Agent": userAgent,
+                "User-Agent":
+                    req.headers["user-agent"] ||
+                    "Mozilla/5.0 (compatible; InstagramDownloader/1.0)",
                 Referer: "https://www.instagram.com/",
             },
         });
@@ -38,33 +34,25 @@ export default async function handler(req, res) {
             throw new Error(`Upstream server responded with ${response.status}`);
         }
 
-        // Forward relevant headers
-        const relevantHeaders = [
-            "content-type",
-            "content-length",
-            "accept-ranges",
-            "content-range",
-            "cache-control",
-            "etag",
-            "last-modified",
-        ];
+        const contentType =
+            response.headers.get("content-type") || "application/octet-stream";
 
-        relevantHeaders.forEach((h) => {
-            const v = response.headers.get(h);
-            if (v) res.setHeader(h, v);
-        });
+        const ext = contentType.includes("jpeg")
+            ? "jpg"
+            : contentType.includes("png")
+                ? "png"
+                : contentType.includes("mp4")
+                    ? "mp4"
+                    : "bin";
 
-        // Add CORS
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
-        res.setHeader("Access-Control-Allow-Headers", "Range, Content-Type");
+        res.setHeader("Content-Type", contentType);
+        res.setHeader(
+            "Content-Disposition",
+            `attachment; filename="media.${ext}"`
+        );
 
-        // Cache control
-        if (!res.getHeader("cache-control")) {
-            res.setHeader("Cache-Control", "public, max-age=86400");
-        }
-
-        response.body.pipe(res);
+        const buffer = Buffer.from(await response.arrayBuffer());
+        res.send(buffer);
     } catch (err) {
         res
             .status(500)

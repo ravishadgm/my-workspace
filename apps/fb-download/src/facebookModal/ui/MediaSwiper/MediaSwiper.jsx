@@ -1,9 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { useState } from "react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -12,7 +11,6 @@ import SwiperNavigation from "@/facebookModal/ui/SwiperNavigation/SwiperNavigati
 import { isVideo } from "@/utils/constHelper";
 import MediaImage from "@/facebookModal/ui/MediaImage/MediaImage";
 import MediaVideo from "@/facebookModal/ui/MediaVideo/MediaVideo";
-
 import styles from "./MediaSwiper.module.scss";
 
 export default function MediaSwiper({ mediaUrls = [], onSlideChange }) {

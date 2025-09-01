@@ -12,6 +12,8 @@ const nextConfig = {
           "./layout": "./src/layout/index.js",
           "./components": "./src/components/index.js",
           "./other": "./src/other/index.js",
+          "./icons": "./src/icons/index.js",
+          "./hooks": "./src/hooks/index.js",
         },
         shared: {
           react: { singleton: true, requiredVersion: false },

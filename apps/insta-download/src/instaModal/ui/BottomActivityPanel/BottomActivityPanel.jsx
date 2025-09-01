@@ -2,10 +2,8 @@
 
 import React from "react";
 import PostCaption from "@/instaModal/ui/PostCaption/PostCaption";
-import { formatNumber } from "@/instaModal/hooks/formatNumber/formatNumber";
-import { handleShareAll } from "@/instaModal/hooks/share/share";
-import { handleDownloadAll } from "@/instaModal/hooks/download/download";
-import { FaRegHeart, FaRegComment, FaRegEye } from "@/icons/index"; // 👈 added FaRegEye for views
+import { formatNumber, handleShareAll, handleDownloadAll } from "shared/hooks";
+import { FaRegHeart, FaRegComment, FaRegEye } from "@/icons/index";
 
 import styles from "./BottomActivityPanel.module.scss";
 

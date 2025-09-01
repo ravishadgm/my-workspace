@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "@/icons/index";
+import { FaChevronLeft, FaChevronRight } from "shared/icons";
 import styles from "./SwiperNavigation.module.scss";
 
 export default function SwiperNavigation({ swiper }) {

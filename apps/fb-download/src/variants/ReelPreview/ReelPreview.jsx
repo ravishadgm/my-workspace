@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import BottomActivityPanel from "@/facebookModal/ui/BottomActivityPanel/BottomActivityPanel";
-import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from "@/icons/index";
+import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from "shared/icons";
 import styles from "./ReelPreview.module.scss";
 
 export default function ReelPreview({ data }) {
