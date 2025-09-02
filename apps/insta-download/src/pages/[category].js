@@ -11,7 +11,7 @@ import {
   FaqSection,
 } from "../shared";
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
-import { downloadFacebookMedia } from "@/utils/api";
+import { downloadInstagramMedia } from "@/utils/api";
 import { faqs, steps } from "@/dataStore/faqContent";
 export default function CategoryPage({ content }) {
   if (!content) {
@@ -26,7 +26,7 @@ export default function CategoryPage({ content }) {
         subtitle={content.subtitle}
         mainLinks={mainNavLinks}
         previewComponentMap={previewComponentMap}
-        downloadFacebookMedia={downloadFacebookMedia}
+        downloadHandler={downloadInstagramMedia}
       />
       <AboutProcess
         image={content.about.image}
@@ -51,12 +51,12 @@ export default function CategoryPage({ content }) {
       />
 
       <AppPromotion mobileImg={Images.mobile} />
-      <FaqSection
-        title="Frequently asked questions (FAQ)"
-        intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If you can't find the answer to your question, you can email us through our contact page."
-        image={Images.Download}
-        faqs={faqs}
-      />
+           <FaqSection
+              title="Frequently asked questions (FAQ)"
+              intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If you can't find the answer to your question, you can email us through our contact page."
+              image={Images.Download}
+              faqs={faqs}
+            />
       <Footer
         logo={Images.Logo}
         mainLinks={mainNavLinks}

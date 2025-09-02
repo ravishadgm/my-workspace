@@ -1,15 +1,16 @@
 "use client";
-
 import { useRef, useEffect, useState } from "react";
-import {
-  Swiper,
-  SwiperSlide,
-  Navigation,
-} from "@/instaModal/ui/CustomSwiper/CustomSwiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import Image from "next/image";
+import "swiper/css";
+import "swiper/css/navigation";
+
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
 import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
 import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
-import { handleShareAll, handleDownloadAll } from "shared/hooks";
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
+import { handleShareAll } from "@/instaModal/hooks/share/share";
+import { handleDownloadAll } from "@/instaModal/hooks/download/download";
 import styles from "./StoryPreview.module.scss";
 
 export default function StoryPreview({ stories = [] }) {
@@ -21,52 +22,35 @@ export default function StoryPreview({ stories = [] }) {
   const [progressPaused, setProgressPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
-  const flattenedStories = stories.reduce((acc, story) => {
-    acc.push(story);
-    if (story.reel_media && story.reel_media.length > 0) {
-      acc.push(...story.reel_media);
-    }
-    return acc;
-  }, []);
-
-  const mediaUrls = flattenedStories
-    .map((story) => {
-      const video = story.video_versions?.[0]?.url;
-      const image =
-        story.image_versions2?.candidates?.[0]?.url ||
-        story.display_resources?.[0]?.src ||
-        story.image_versions?.standard_resolution?.url;
-      return video || image;
-    })
-    .filter(Boolean);
+  const mediaUrls = Array.isArray(stories)
+    ? stories.map((story) => story.download_url).filter(Boolean)
+    : [];
 
   useEffect(() => {
-    const activeStory = flattenedStories[currentIndex];
-    const isVideo = activeStory?.video_versions?.[0]?.url;
-    if (isVideo) {
+    const activeStory = stories[currentIndex];
+    if (!activeStory) return;
+
+    if (activeStory.type === "video") {
       const video = document.createElement("video");
-      video.src = activeStory.video_versions[0].url;
+      video.src = activeStory.download_url;
       video.onloadedmetadata = () => {
         setActiveDuration(video.duration * 1000);
       };
-      video.onerror = () => {
-        setActiveDuration(4000);
-      };
+      video.onerror = () => setActiveDuration(4000);
     } else {
       setActiveDuration(4000);
     }
-  }, [currentIndex, flattenedStories]);
+  }, [currentIndex, stories]);
 
   useEffect(() => {
     if (!isPlaying) return;
-
     const timer = setTimeout(() => {
       swiperInstance?.slideNext();
     }, activeDuration);
     return () => clearTimeout(timer);
   }, [activeDuration, swiperInstance, currentIndex, isPlaying]);
 
-  if (!flattenedStories.length) {
+  if (!stories.length) {
     return (
       <div className={styles.storyEmpty}>
         <p>No stories found for this user.</p>
@@ -97,7 +81,7 @@ export default function StoryPreview({ stories = [] }) {
     <>
       <div className={styles.storyWrapper}>
         <div className={styles.progressRow}>
-          {flattenedStories.map((_, idx) => (
+          {stories.map((_, idx) => (
             <div key={idx} className={styles.progressContainer}>
               <div
                 className={`${styles.progressFill} ${
@@ -129,7 +113,6 @@ export default function StoryPreview({ stories = [] }) {
               vid.muted = true;
             });
 
-            // Play & apply mute setting to the active one
             const activeVideo =
               swiper.slides[swiper.activeIndex].querySelector("video");
             if (activeVideo) {
@@ -142,20 +125,29 @@ export default function StoryPreview({ stories = [] }) {
           }}
           className={styles.storySwiper}
         >
-          {flattenedStories.map((story, idx) => {
-            const video = story.video_versions?.[0]?.url;
-            const image =
-              story.image_versions2?.candidates?.[0]?.url ||
-              story.display_resources?.[0]?.src ||
-              story.image_versions?.standard_resolution?.url;
+          {stories.map((story, idx) => {
+            const isVideo = story.type === "video";
+            const url = story.download_url;
+            const thumbnail = story.thumbnail;
+            const username = story.username || "Instagram User";
+
+            let initials = "IU";
+            if (username && username !== "Instagram User") {
+              initials = username
+                .split(" ")
+                .map((w) => w[0])
+                .join("")
+                .slice(0, 2)
+                .toUpperCase();
+            }
 
             return (
               <SwiperSlide key={idx}>
                 <div className={styles.storySlide}>
-                  {video ? (
+                  {isVideo ? (
                     <video
                       ref={idx === currentIndex ? videoRef : null}
-                      src={video}
+                      src={url}
                       autoPlay
                       muted
                       loop
@@ -163,40 +155,36 @@ export default function StoryPreview({ stories = [] }) {
                       className={styles.storyMedia}
                       onError={(e) => console.warn("Video failed to load:", e)}
                     />
-                  ) : image ? (
+                  ) : (
                     <img
-                      src={image}
+                      src={url}
                       alt={`story-${idx}`}
                       className={styles.storyMedia}
                       onError={(e) => {
-                        const altImage =
-                          story.display_resources?.[1]?.src ||
-                          story.image_versions?.low_resolution?.url;
-                        if (altImage && e.target.src !== altImage) {
-                          e.target.src = altImage;
+                        if (thumbnail && e.target.src !== thumbnail) {
+                          e.target.src = thumbnail;
                         }
                       }}
                     />
-                  ) : (
-                    <div className={styles.storyPlaceholder}>
-                      <p>Story content not available</p>
-                    </div>
                   )}
 
                   <div className={styles.storyTopBar}>
                     <div className={styles.storyUser}>
-                      {story.user?.profile_pic_url && (
-                        <img
-                          src={story.user.profile_pic_url}
-                          alt={story.user?.username}
-                          className={styles.storyAvatar}
-                          onError={(e) => (e.target.style.display = "none")}
+                      {thumbnail ? (
+                        <Image
+                          src={thumbnail}
+                          alt={username}
+                          width={30}
+                          height={30}
+                          className={styles.avatar}
                         />
+                      ) : (
+                        <div className={styles.initials}>{initials}</div>
                       )}
-                      <span>@{story.user?.username || "unknown"}</span>
+                      <span className={styles.username}>{username}</span>
                     </div>
 
-                    {video && idx === currentIndex && (
+                    {isVideo && idx === currentIndex && (
                       <div className={styles.controlButtons}>
                         <button
                           className={styles.muteButton}
@@ -204,7 +192,6 @@ export default function StoryPreview({ stories = [] }) {
                         >
                           {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                         </button>
-
                         <button
                           className={styles.playPauseButton}
                           onClick={togglePlayPause}
@@ -219,8 +206,10 @@ export default function StoryPreview({ stories = [] }) {
             );
           })}
         </Swiper>
+
         <SwiperNavigation swiper={swiperInstance} />
       </div>
+
       <div className={styles.shareDownload}>
         <button
           className={styles.shareBtn}

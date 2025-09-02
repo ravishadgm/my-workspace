@@ -8,6 +8,7 @@ export default function PostCaption({ username, caption = "" }) {
 
   const toggleExpanded = () => setExpanded(!expanded);
 
+
   const lines = caption.split(/\r?\n/);
   const shouldTruncate = lines.length > 1;
 

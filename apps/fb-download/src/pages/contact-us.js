@@ -1,6 +1,5 @@
-
-import React from "react";
 import { Contact, Footer, Header } from "@/shared";
+import React from "react";
 import Images from "../../public/images/index";
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
 function ContactUs() {

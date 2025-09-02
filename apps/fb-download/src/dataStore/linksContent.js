@@ -1,4 +1,5 @@
-import { FaVideo, FaImage, FaRegCalendarAlt, MdOutlineSlideshow } from "shared/icons";
+import { FaVideo, FaImage, FaRegCalendarAlt } from "react-icons/fa";
+import { MdOutlineSlideshow } from "react-icons/md";
 
 const mainNavLinks = [
     {

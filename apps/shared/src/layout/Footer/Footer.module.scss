@@ -1,6 +1,5 @@
 .footerRoot {
   background-color: #f5f9ff;
-  // border-top: 1px solid #e18ece;
   border-top: 1px solid var(--footer-border, #e18ece);
   padding: 32px 0;
   margin-top: auto;
@@ -18,12 +17,6 @@
 .logo {
   text-align: center;
   margin-bottom: 20px;
-
-  // .logoText {
-  //   color: #7917ff;
-  //   font-size:24px;
-  //   font-weight: 700;
-  // }
 }
 
 .navLinks,
@@ -40,9 +33,22 @@
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+  
+  // Ensure the link is properly clickable
+  position: relative;
+  z-index: 1;
 
   &:hover {
     color: #888b8e;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $blue-outline;
+    outline-offset: 2px;
+    background-color: #fff;
+    border-radius: 2px;
   }
 }
 
@@ -50,6 +56,7 @@
   color: #888b8e;
   font-size: 14px;
   margin: 0 4px;
+  pointer-events: none; // Ensure separators don't interfere with clicks
 }
 
 .copyright {
@@ -73,25 +80,23 @@
 }
 
 @media (max-width: 768px) {
-  .footer {
-    .container {
-      gap: 14px;
-      padding: 0 22px;
-    }
+  .container {
+    gap: 14px;
+    padding: 0 22px;
+  }
 
-    .navLinks,
-    .footerLinks {
-      gap: 4px;
-    }
+  .navLinks,
+  .footerLinks {
+    gap: 4px;
+  }
 
-    .link {
-      font-size: 12px;
-    }
+  .link {
+    font-size: 12px;
+  }
 
-    .separator {
-      font-size: 12px;
-      margin: 2px;
-    }
+  .separator {
+    font-size: 12px;
+    margin: 2px;
   }
 }
 

@@ -3,7 +3,7 @@ import StoryPreview from "@/variants/StoryPreview/StoryPreview";
 import PhotoPostPreview from "@/variants/PhotoPostPreview/PhotoPostPreview";
 
 export const previewComponentMap = {
-  reel: (props) => <ReelPreview {...props} />,
+ reel: (props) => <ReelPreview {...props} />,
   reels: (props) => <ReelPreview {...props} />,
   video: (props) => <ReelPreview {...props} />,
   story: (props) => <StoryPreview stories={props.data?.medias} {...props} />,
@@ -13,3 +13,4 @@ export const previewComponentMap = {
   igtv: (props) => <PhotoPostPreview {...props} />,
   carousel: (props) => <PhotoPostPreview {...props} />,
 };
+ 

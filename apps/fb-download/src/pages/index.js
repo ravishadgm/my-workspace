@@ -1,4 +1,5 @@
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
+import Images from "../../public/images/index";
 import {
   Header,
   Footer,
@@ -12,7 +13,6 @@ import {
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
 import { downloadFacebookMedia } from "@/utils/api";
 import { steps, faqs } from "@/dataStore/faqContent";
-import Images from "../../public/images/index";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
         subtitle="Download Facebook Videos, Reels, Stories & Photos"
         mainLinks={mainNavLinks}
         previewComponentMap={previewComponentMap}
-        downloadFacebookMedia={downloadFacebookMedia}
+        downloadHandler={downloadFacebookMedia}
       />
       <AboutProcess
         image={Images.Download}
