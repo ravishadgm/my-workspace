@@ -1,12 +1,12 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 import { useState } from "react";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import {
+  Swiper,
+  SwiperSlide,
+  Navigation,
+  Pagination,
+} from "@/instaModal/ui/CustomSwiper/CustomSwiper";
 
 import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
 import { isVideo } from "@/utils/constHelper";
@@ -32,13 +32,9 @@ export default function MediaSwiper({ mediaUrls = [], onSlideChange }) {
           <SwiperSlide key={idx}>
             <div className={styles.imageWrapper}>
               {isVideo(url) ? (
-                <MediaVideo src={url}  />
+                <MediaVideo src={url} />
               ) : (
-                <MediaImage
-                  src={url}
-                  alt={`Slide ${idx + 1}`}
-                  
-                />
+                <MediaImage src={url} alt={`Slide ${idx + 1}`} />
               )}
             </div>
           </SwiperSlide>

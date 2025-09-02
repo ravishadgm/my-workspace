@@ -1,5 +1,4 @@
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
-import Images from "../../public/images/index";
 import {
   Header,
   Footer,
@@ -11,13 +10,11 @@ import {
   FaqSection,
 } from "../shared";
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
-import { downloadInstagramMedia } from "@/utils/api";
+import { downloadFacebookMedia } from "@/utils/api";
 import { steps, faqs } from "@/dataStore/faqContent";
-import { useRouter } from "next/router"; // ✅ pages router
+import Images from "../../public/images/index";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <>
       <Header logo={Images.Logo} />
@@ -27,9 +24,8 @@ export default function Home() {
         subtitle="Download Instagram Videos, Reels, Stories & Photos"
         mainLinks={mainNavLinks}
         previewComponentMap={previewComponentMap}
-        downloadHandler={downloadInstagramMedia}
+        downloadFacebookMedia={downloadFacebookMedia}
       />
-
       <AboutProcess
         image={Images.Download}
         title="Instagram Videos and Photos Download"
@@ -38,9 +34,7 @@ export default function Home() {
         smallDescription="You must follow these three easy steps to download video, reels, and photo from Instagram (IG, Insta). Follow the simple steps below."
         steps={steps}
       />
-
       <WhyUs />
-
       <DownloadDescription
         heading="InstaDl.app features"
         headingDescription="With InstaDl you can download any type of content from Instagram. Our service has an IG video downloader, Reels, IGTV, photo or carousel."
@@ -53,7 +47,6 @@ export default function Home() {
         secondDescription="Instagram photo download provided by InstaDl.app is a great tool for saving images from Instagram posts. With InstaDl, you can download a single post image and multiple Instagram photos (carousel)."
         secondLink="/photo"
       />
-
       <DownloadDescription
         image={Images.videoImg1}
         title="Reels Downloader"
@@ -71,9 +64,7 @@ export default function Home() {
         description="Carousel, also known as Album or Gallery posts type with multiple photos, videos, or mixed content. If you need to download multiple photos from Instagram, the InstaDl.app is the best to download gallery."
         link="/carousel"
       />
-
       <AppPromotion mobileImg={Images.mobile} />
-
       <FaqSection
         title="Frequently asked questions (FAQ)"
         intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If you can't find the answer to your question, you can email us through our contact page."
@@ -81,12 +72,10 @@ export default function Home() {
         faqs={faqs}
       />
 
-      {/* ✅ Inject navigation control */}
       <Footer
         logo={Images.Logo}
         mainLinks={mainNavLinks}
         legalLinks={legalLinks}
-        onNavigate={(href) => router.push(href)}
       />
     </>
   );

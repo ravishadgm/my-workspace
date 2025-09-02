@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PostHeader from "@/instaModal/ui/PostHeader/PostHeader";
-import MediaSwiper from "@/instaModal/ui/MediaSwiper/MediaSwiper";
-import BottomActivityPanel from "@/instaModal/ui/BottomActivityPanel/BottomActivityPanel";
-import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
+import PostHeader from "@/facebookModal/ui/PostHeader/PostHeader";
+import MediaSwiper from "@/facebookModal/ui/MediaSwiper/MediaSwiper";
+import BottomActivityPanel from "@/facebookModal/ui/BottomActivityPanel/BottomActivityPanel";
+import MediaGallery from "@/facebookModal/ui/MediaGallery/MediaGallery";
 import styles from "./PhotoPostPreview.module.scss";
 
 export default function PhotoPostPreview({ userEnteredUrl, data }) {
@@ -36,7 +36,7 @@ export default function PhotoPostPreview({ userEnteredUrl, data }) {
 
           if (res.ok) {
             setPostData({
-              thumbnail: fbData.thumbnail,
+              initials: fbData.initials,
               username: "Facebook User",
               fullName: "Facebook",
               title: fbData.title,
@@ -67,10 +67,11 @@ export default function PhotoPostPreview({ userEnteredUrl, data }) {
     <>
       <div className={styles.post}>
         <PostHeader
-          avatar={postData?.thumbnail}
+          avatar={postData?.initials}
           username={postData?.username || "Facebook User"}
           fullName={postData?.fullName || "Facebook User"}
           title={postData?.title}
+          color="dark"
         />
 
         <MediaSwiper

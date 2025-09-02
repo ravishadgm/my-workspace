@@ -1,21 +1,28 @@
+function getMediaTypeFromUrl(url) {
+    if (/\/stories\//i.test(url)) return "story";
+    if (/\/(videos|reel|watch)\//i.test(url)) return "media";
+    if (/\/(photos|photo)?\//i.test(url)) return "photo";
 
+    return "unknown";
+}
 
-export async function downloadInstagramMedia(url) {
-    if (!url || !url.trim()) {
-        throw new Error("Please enter a URL");
+export async function downloadFacebookMedia(url) {
+    const mediaType = getMediaTypeFromUrl(url);
+
+    if (mediaType === "unknown") {
+        throw new Error("Cannot determine media type from URL");
     }
 
-    const res = await fetch("/api/facebook", {
+    const res = await fetch(`/api/${mediaType}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
     });
 
-    const data = await res.json();
-
     if (!res.ok) {
-        throw new Error(data.error || "Server error");
+        const error = await res.json().catch(() => ({}));
+        throw new Error(error.error || "Failed to fetch Facebook media");
     }
 
-    return data;
+    return res.json();
 }

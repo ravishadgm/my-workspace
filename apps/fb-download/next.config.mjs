@@ -2,6 +2,15 @@
 import NextFederationPlugin from '@module-federation/nextjs-mf';
 
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.fna.fbcdn.net", // allow all fbcdn subdomains
+      },
+    ],
+  },
+
   webpack(config) {
     config.plugins.push(
       new NextFederationPlugin({
