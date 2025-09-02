@@ -1,4 +1,3 @@
-// pages/api/fbDownloader.js
 import getFBInfo from "@xaviabot/fb-downloader";
 
 export const config = {
