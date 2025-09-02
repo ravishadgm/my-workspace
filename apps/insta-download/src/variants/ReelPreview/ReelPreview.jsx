@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
 import { handleShare, handleDownload } from "shared/hooks";
-import { FaVolumeUp, FaVolumeMute } from "@/icons/index"; // import icons
+import { FaVolumeUp, FaVolumeMute } from "@/icons/index";
 import styles from "./ReelPreview.module.scss";
 
 export default function ReelPreview({ data }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); // state for mute/unmute
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
 
   const handlePlay = () => setIsPlaying(true);
@@ -14,7 +14,7 @@ export default function ReelPreview({ data }) {
   const handleEnded = () => setIsPlaying(false);
 
   const getTruncatedText = (text, maxLength = 80) => {
-    if (!text) return "Video caption";
+    if (!text) return "Reels caption";
     if (text.length <= maxLength) return text;
 
     const truncated = text.substring(0, maxLength);
@@ -57,7 +57,7 @@ export default function ReelPreview({ data }) {
           <div className={styles.caption} onClick={toggleCaption}>
             {isExpanded ? (
               <>
-                {data.caption || "Video caption"}
+                {data.caption || "Reels caption"}
                 <span className={styles.showMore}> ... less</span>
               </>
             ) : (

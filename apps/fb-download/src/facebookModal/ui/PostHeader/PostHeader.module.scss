@@ -27,9 +27,13 @@
 }
 
 .username {
- font-weight: bold;
-// color: $dark-gray;
-color:#fff;
-
+  font-weight: bold;
 }
 
+.username.dark {
+  color: $dark-gray;
+}
+
+.username.light {
+  color: #fff;
+}

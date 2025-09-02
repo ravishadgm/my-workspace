@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import {
+  Swiper,
+  SwiperSlide,
+  Navigation,
+  Pagination,
+} from "@/instaModal/ui/CustomSwiper/CustomSwiper";
 
 import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
 import { isVideo } from "@/utils/constHelper";

@@ -22,7 +22,7 @@ export default async function handler(req, res) {
                     "Content-Type": "application/json",
                     //"x-rapidapi-key": process.env.RAPIDAPI_KEY,
                     "x-rapidapi-key": 'ecfb71dbc6msh2db6058090453a8p1e7ff6jsna42d93ce4e1b',
-                    // "x-rapidapi-key": "c34d95927dmsh166eff8f28923b3p1ea15ajsn0f2a81eab998",
+                    // "x-rapidapi-key": "c34d95927dmsh166eff8f28923b3p1ea15ajsn0f2a81eab998", ---- not workable    
                     "x-rapidapi-host": "facebook-media-api.p.rapidapi.com",
                 },
                 body: JSON.stringify({

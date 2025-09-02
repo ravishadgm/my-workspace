@@ -36,7 +36,7 @@ export default function PhotoPostPreview({ userEnteredUrl, data }) {
 
           if (res.ok) {
             setPostData({
-              thumbnail: fbData.thumbnail,
+              initials: fbData.initials,
               username: "Facebook User",
               fullName: "Facebook",
               title: fbData.title,
@@ -67,10 +67,11 @@ export default function PhotoPostPreview({ userEnteredUrl, data }) {
     <>
       <div className={styles.post}>
         <PostHeader
-          avatar={postData?.thumbnail}
+          avatar={postData?.initials}
           username={postData?.username || "Facebook User"}
           fullName={postData?.fullName || "Facebook User"}
           title={postData?.title}
+          color="dark"
         />
 
         <MediaSwiper

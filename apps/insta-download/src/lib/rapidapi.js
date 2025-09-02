@@ -1,16 +1,16 @@
 export async function callRapidAPI(url) {
   try {
     const response = await fetch(
-      `https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/get-info-rapidapi?url=${encodeURIComponent(
+      `https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/get-info?url=${encodeURIComponent(
         url
       )}`,
       {
         method: "GET",
         headers: {
           "x-rapidapi-key": process.env.RAPIDAPI_KEY,
-          "x-rapidapi-host":
-            "instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com",
-        },
+          "x-rapidapi-host": "instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com", // check RapidAPI docs
+          // "Content-Type": "application/json"
+        }
       }
     );
 

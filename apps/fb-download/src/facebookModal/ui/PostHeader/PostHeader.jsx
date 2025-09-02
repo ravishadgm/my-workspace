@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./PostHeader.module.scss";
 
-export default function PostHeader({ username, avatar }) {
+export default function PostHeader({ username, avatar, color = "dark" }) {
   const displayName = username || "Instagram_User";
 
   let initials = "";
@@ -30,7 +30,13 @@ export default function PostHeader({ username, avatar }) {
         <div className={styles.initials}>{initials}</div>
       )}
 
-      <span className={styles.username}>{displayName}</span>
+      <span
+        className={`${styles.username} ${
+          color === "light" ? styles.light : styles.dark
+        }`}
+      >
+        {displayName}
+      </span>
     </div>
   );
 }

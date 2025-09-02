@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-// import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "shared/icons/index";
+import {
+  Swiper,
+  SwiperSlide,
+  Navigation,
+} from "@/instaModal/ui/CustomSwiper/CustomSwiper";
 import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
 import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
 import { handleShareAll, handleDownloadAll } from "shared/hooks";

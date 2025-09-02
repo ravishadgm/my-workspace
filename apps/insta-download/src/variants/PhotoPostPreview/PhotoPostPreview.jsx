@@ -1,8 +1,5 @@
 "use client";
 import { useState } from "react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import BottomActivityPanel from "@/instaModal/ui/BottomActivityPanel/BottomActivityPanel";
 import PostHeader from "@/instaModal/ui/PostHeader/PostHeader";
 import MediaSwiper from "@/instaModal/ui/MediaSwiper/MediaSwiper";

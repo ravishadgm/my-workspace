@@ -25,7 +25,7 @@ export default function ReelPreview({ data }) {
   };
 
   const getTruncatedText = (text, maxLength = 80) => {
-    if (!text) return "Video caption";
+    if (!text) return "Reels caption";
     if (text.length <= maxLength) return text;
     const truncated = text.substring(0, maxLength);
     const lastSpace = truncated.lastIndexOf(" ");
@@ -35,7 +35,7 @@ export default function ReelPreview({ data }) {
   const toggleCaption = () => setIsExpanded(!isExpanded);
 
   const mediaUrl = data?.media?.[0]?.url || "";
-  const caption = data?.title || data?.caption || "Video caption";
+  const caption = data?.title || data?.caption || "Reels caption";
 
   return (
     <div className={styles.reelContainer}>
