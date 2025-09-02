@@ -18,7 +18,7 @@ export const categoryContent = {
             image: Images.Download,
             title: "Download Facebook Videos",
             description:
-                "Explore a variety of interesting content on Facebook and get your favorite videos with FacebookDl. This easy online tool lets you download Facebook videos anytime, without any limits. FacebookDl lets you download as many videos as you want for watching offline, all with just a few simple steps.",
+                "Explore a variety of interesting contentt on Facebook and get your favorite videos with FacebookDl. This easy online tool lets you download Facebook videos anytime, without any limits. FacebookDl lets you download as many videos as you want for watching offline, all with just a few simple steps.",
             smallDescription:
                 "Here are the three simple and fastest ways to download an Facebook video.",
             steps: videoSteps,

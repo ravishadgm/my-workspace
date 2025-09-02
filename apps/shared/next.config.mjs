@@ -4,6 +4,7 @@ import NextFederationPlugin from "@module-federation/nextjs-mf";
 const nextConfig = {
   webpack(config) {
     config.plugins.push(
+
       new NextFederationPlugin({
         name: "shared",
         filename: "static/chunks/remoteEntry.js",
