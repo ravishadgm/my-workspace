@@ -10,8 +10,9 @@ import {
     FaqSection,
 } from "../shared";
 import { previewComponentMap } from "@/dataStore/mediaPreviewTypes";
-import { downloadInstagramMedia } from "@/utils/api";
+import { downloadFacebookMedia } from "@/utils/api";
 import { faqs, steps } from "@/dataStore/faqContent";
+
 export default function CategoryPage({ content }) {
     if (!content) {
         return <h1>404 | Page Not Found</h1>;
@@ -25,7 +26,7 @@ export default function CategoryPage({ content }) {
                 subtitle={content.subtitle}
                 mainLinks={mainNavLinks}
                 previewComponentMap={previewComponentMap}
-                downloadHandler={downloadInstagramMedia}
+                downloadFacebookMedia={downloadFacebookMedia}
             />
             <AboutProcess
                 image={content.about.image}

@@ -13,6 +13,7 @@ export default function Downloader({
   subtitle = "Download Facebook Videos, Photos, Reels & Story",
   mainLinks = [],
   previewComponentMap = {}, // ✅ dynamic
+  downloadFacebookMedia,
 }) {
   const [url, setUrl] = useState("");
   const [mediaData, setMediaData] = useState(null);
@@ -41,22 +42,22 @@ export default function Downloader({
   }, [pageMeta]);
 
   const handleDownload = async (e) => {
-    // e.preventDefault();
-    // if (!url.trim()) {
-    //   setError("Please enter a URL");
-    //   return;
-    // }
-    // setLoading(true);
-    // setError("");
-    // setMediaData(null);
-    // try {
-    //   const data = await downloadFacebookMedia(url);
-    //   setMediaData(data);
-    // } catch (err) {
-    //   setError(err.message || "Something went wrong");
-    // } finally {
-    //   setLoading(false);
-    // }
+    e.preventDefault();
+    if (!url.trim()) {
+      setError("Please enter a URL");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    setMediaData(null);
+    try {
+      const data = await downloadFacebookMedia(url);
+      setMediaData(data);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePaste = async () => {

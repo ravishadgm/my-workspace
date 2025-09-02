@@ -1,15 +1,15 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
-import MediaGallery from "@/instaModal/ui/MediaGallery/MediaGallery";
-import SwiperNavigation from "@/instaModal/ui/SwiperNavigation/SwiperNavigation";
-import BottomActivityPanel from "@/instaModal/ui/BottomActivityPanel/BottomActivityPanel";
-import PostHeader from "@/instaModal/ui/PostHeader/PostHeader";
+import {
+  Swiper,
+  SwiperSlide,
+  Navigation,
+} from "@/facebookModal/ui/CustomSwiper/CustomSwiper";
+import MediaGallery from "@/facebookModal/ui/MediaGallery/MediaGallery";
+import SwiperNavigation from "@/facebookModal/ui/SwiperNavigation/SwiperNavigation";
+import BottomActivityPanel from "@/facebookModal/ui/BottomActivityPanel/BottomActivityPanel";
+import PostHeader from "@/facebookModal/ui/PostHeader/PostHeader";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "shared/icons";
 import styles from "./StoryPreview.module.scss";
 
 export default function StoryPreview({ data }) {
@@ -163,6 +163,7 @@ export default function StoryPreview({ data }) {
                       thumbnail={postData.thumbnail}
                       username={postData.username}
                       fullName={postData.fullName}
+                      color="light"
                     />
 
                     {isVideo && idx === currentIndex && (

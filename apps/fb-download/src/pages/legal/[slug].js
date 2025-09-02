@@ -3,6 +3,7 @@ import { Footer, Header, Policy } from "@/shared";
 import legalPagesData from "@/dataStore/legalPagesContent";
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
 import Images from "../../../public/images/index";
+
 export default function PolicyPage({ pageData }) {
     if (!pageData) return <div>Page not found</div>;
     return (

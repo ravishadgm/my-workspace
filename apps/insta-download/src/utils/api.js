@@ -1,6 +1,6 @@
 
 
-export async function downloadInstagramMedia(url) {
+export async function downloadFacebookMedia(url) {
   if (!url || !url.trim()) {
     throw new Error("Please enter a URL");
   }
