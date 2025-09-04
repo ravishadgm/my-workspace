@@ -53,9 +53,9 @@ export default function CategoryPage({ content }) {
             <AppPromotion mobileImg={Images.mobile} appHeight={377} />
             <FaqSection
                 title="Frequently asked questions (FAQ)"
-                intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If you can't find the answer to your question, you can email us through our contact page."
-                image={Images.Download}
-                faqs={faqs}
+                intro={content.faq.intro}
+                image={content.faq.image}
+                faqs={content.faq.items}
             />
             <Footer
                 logo={Images.Logo}

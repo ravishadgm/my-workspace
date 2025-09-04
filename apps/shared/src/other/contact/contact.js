@@ -17,11 +17,10 @@ export default function Page() {
         </h3>
         <div className={styles.content} aria-labelledby={headingId}>
           <p>
-            Do you want to know more about how we could help you? Don’t hesitate
-            to get in touch with us.
+            To know more about the ways we can help, don’t hesitate to get in touch with our team.
           </p>
           <p>
-            Contact us by email:{" "}
+            Contact our team via email:{" "}
             <a
               href="mailto:resilient.tech001@gmail.com"
               className={styles.link}

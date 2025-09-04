@@ -11,6 +11,7 @@ export async function getFacebookMedia(url, cookies, userAgent) {
     return {
         type: /\/reel\//i.test(url) ? "reel" : (videoUrl ? "video" : "photo"),
         title: first.title || null,
+        caption: first.description || first.caption || null,
         thumbnail: first.thumbnail || null,
         media: videoUrl
             ? [{ quality: first.hd ? "HD" : "SD/auto", url: videoUrl }]

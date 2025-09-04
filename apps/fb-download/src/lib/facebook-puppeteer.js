@@ -8,11 +8,14 @@ export async function callFacebookPuppeteer(url) {
     const videos = await page.$$eval("video", els => els.map(v => v.src).filter(Boolean));
     const images = await page.$$eval("img", els => els.map(i => i.src).filter(s => s.includes("scontent")));
 
+    const caption = await page.$eval("div[dir='auto']", el => el.innerText).catch(() => null);
+
     await browser.close();
 
     const media = videos.length ? videos : images;
     return {
         type: videos.length ? "video" : "photo",
+        caption: caption || null,
         media: media.map((url) => ({ url })),
     };
 }

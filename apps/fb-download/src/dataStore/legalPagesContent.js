@@ -63,7 +63,7 @@ const legalPagesData = {
             },
             {
                 heading: "2. Description of Service",
-                text: 'FacebookDl.app is a free online tool that allows users to download Facebook content including photos, videos, reels, stories, IGTV, and carousel posts. Our service is provided "as is" without any warranties.',
+                text: 'FacebookDl.app is a free online tool that allows users to download Facebook content including photos, videos, reels, stories and posts. Our service is provided "as is" without any warranties.',
             },
             {
                 heading: "3. User Responsibilities",

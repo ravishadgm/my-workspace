@@ -31,9 +31,9 @@ export default function AppPromotion({ mobileImg, appHeight = 400 }) {
         <div className={styles.content}>
           <h2 id="app-promo-heading">Download with mobile app</h2>
           <p>
-            Download any photos, videos, reels, IGTV in one click! Our app
-            provides fast, high-resolution downloads without watermarks, making
-            it an ideal choice for downloading Instagram content.
+            Download your favorite photos, videos Reels and story in a single
+            tap!Enjoy fast, HD downloads free of watermarks with our app—an
+            excellent option for Social Media content.
           </p>
           <Link href="/">
             <button

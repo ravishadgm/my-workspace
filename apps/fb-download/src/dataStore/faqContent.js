@@ -4,7 +4,7 @@ export const faqs = [
     {
         question: `What is FacebookDl.app?`,
         answer:
-            "FacebookDl.app is a web tool that lets you save Facebook posts like photos, videos, Reels, Stories, IGTV, and carousels to your device so you can watch them offline.",
+            "FacebookDl.app is an online tool that lets you save Facebook content, such as photos, videos, Reels, and Stories, directly to your device for offline viewing.",
     },
     {
         question: "Is it legal to download from Facebook?",
@@ -30,14 +30,14 @@ export const faqs = [
         ],
     },
     {
+        question: "Why might the download be slow?",
+        answer:
+            `Slowness can happen because of a weak internet connection, heavy ISP throttling, or Facebook’s rate limiting. Try switching to another Wi-Fi, turning off a VPN, or using a different browser. If that doesn’t help, contact us through the contact page — we respond quickly.`,
+    },
+    {
         question: "Can I download content from private accounts?",
         answer:
             `No, we can’t. We respect privacy, so only public posts are available. If the post isn’t visible when you’re not logged into Facebook, FacebookDl.app can’t get it either.`,
-    },
-    {
-        question: "Which devices and browsers work with FacebookDl.app?",
-        answer:
-            `It works on any modern browser on Windows, macOS, Linux, Android, iOS, or ChromeOS. We’ve tested it on Chrome, Safari, Firefox, Edge, Opera, and Brave — both on desktop and mobile.`,
     },
     {
         question: "Where do the files go on my phone or computer?",
@@ -50,17 +50,13 @@ export const faqs = [
             `No.
 Links are processed in real time, and once the download is complete, both the original link and the converted file are removed from our servers.`,
     },
-    {
-        question: "Why might the download be slow?",
-        answer:
-            `Slowness can happen because of a weak internet connection, heavy ISP throttling, or Facebook’s rate limiting. Try switching to another Wi-Fi, turning off a VPN, or using a different browser. If that doesn’t help, contact us through the contact page — we respond quickly.`,
-    },
+
 ];
 export const steps = [
     {
         image: Images.step1,
         title: "Copy the URL",
-        text: "Open the Facebook, copy the URL of the post, story, reels, video, carousel, IGTV.",
+        text: "Open the Facebook, copy the URL of the post, story, reels, video.",
         link: "/"
     },
     {

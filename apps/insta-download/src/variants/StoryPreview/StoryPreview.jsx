@@ -12,7 +12,7 @@ import { handleShareAll, handleDownloadAll } from "shared/hooks";
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "@/icons/index";
 import styles from "./StoryPreview.module.scss";
 
-export default function StoryPreview({ stories = [] }) {
+export default function StoryPreview({ stories = [], data }) {
   const videoRef = useRef(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,27 +21,56 @@ export default function StoryPreview({ stories = [] }) {
   const [progressPaused, setProgressPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
-  const flattenedStories = stories.reduce((acc, story) => {
-    acc.push(story);
-    if (story.reel_media && story.reel_media.length > 0) {
-      acc.push(...story.reel_media);
-    }
-    return acc;
-  }, []);
+  useEffect(() => {
+    console.log(
+      "stories length:",
+      Array.isArray(stories) ? stories.length : "not array"
+    );
+  }, [stories, data]);
+
+  const flattenedStories = Array.isArray(stories)
+    ? stories.reduce((acc, story) => {
+        if (!story) return acc;
+
+        acc.push(story);
+        if (story.reel_media && Array.isArray(story.reel_media)) {
+          acc.push(...story.reel_media);
+        }
+        return acc;
+      }, [])
+    : [];
 
   const mediaUrls = flattenedStories
     .map((story) => {
+      if (!story) return null;
+
       const video = story.video_versions?.[0]?.url;
+      if (video) {
+        console.log("Found video URL:", video);
+        return video;
+      }
       const image =
         story.image_versions2?.candidates?.[0]?.url ||
         story.display_resources?.[0]?.src ||
         story.image_versions?.standard_resolution?.url;
-      return video || image;
+
+      if (image) {
+        console.log("Found image URL:", image);
+        return image;
+      }
+      console.log("No media URL found for story:", story);
+      return null;
     })
     .filter(Boolean);
 
+  console.log("Final Media URLs----------", mediaUrls);
+
   useEffect(() => {
+    if (!flattenedStories.length) return;
+
     const activeStory = flattenedStories[currentIndex];
+    if (!activeStory) return;
+
     const isVideo = activeStory?.video_versions?.[0]?.url;
     if (isVideo) {
       const video = document.createElement("video");
@@ -50,6 +79,10 @@ export default function StoryPreview({ stories = [] }) {
         setActiveDuration(video.duration * 1000);
       };
       video.onerror = () => {
+        console.error(
+          "Video failed to load:",
+          activeStory.video_versions[0].url
+        );
         setActiveDuration(4000);
       };
     } else {
@@ -58,21 +91,13 @@ export default function StoryPreview({ stories = [] }) {
   }, [currentIndex, flattenedStories]);
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || !flattenedStories.length) return;
 
     const timer = setTimeout(() => {
       swiperInstance?.slideNext();
     }, activeDuration);
     return () => clearTimeout(timer);
   }, [activeDuration, swiperInstance, currentIndex, isPlaying]);
-
-  if (!flattenedStories.length) {
-    return (
-      <div className={styles.storyEmpty}>
-        <p>No stories found for this user.</p>
-      </div>
-    );
-  }
 
   const togglePlayPause = () => {
     if (!videoRef.current) return;
@@ -129,9 +154,8 @@ export default function StoryPreview({ stories = [] }) {
               vid.muted = true;
             });
 
-            // Play & apply mute setting to the active one
             const activeVideo =
-              swiper.slides[swiper.activeIndex].querySelector("video");
+              swiper.slides[swiper.activeIndex]?.querySelector("video");
             if (activeVideo) {
               activeVideo.currentTime = 0;
               activeVideo.muted = isMuted;
@@ -143,11 +167,25 @@ export default function StoryPreview({ stories = [] }) {
           className={styles.storySwiper}
         >
           {flattenedStories.map((story, idx) => {
+            if (!story) {
+              return (
+                <SwiperSlide key={idx}>
+                  <div className={styles.storySlide}>
+                    <div className={styles.storyPlaceholder}>
+                      <p>Story content not available (null story)</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            }
+
             const video = story.video_versions?.[0]?.url;
             const image =
               story.image_versions2?.candidates?.[0]?.url ||
               story.display_resources?.[0]?.src ||
               story.image_versions?.standard_resolution?.url;
+
+            console.log(`Rendering slide ${idx}:`, { video, image });
 
             return (
               <SwiperSlide key={idx}>
@@ -161,7 +199,19 @@ export default function StoryPreview({ stories = [] }) {
                       loop
                       playsInline
                       className={styles.storyMedia}
-                      onError={(e) => console.warn("Video failed to load:", e)}
+                      onError={(e) => {
+                        console.error(
+                          "Video failed to load--------------",
+                          video,
+                          e
+                        );
+                      }}
+                      onLoadStart={() =>
+                        console.log("Video load started--------------", video)
+                      }
+                      onCanPlay={() =>
+                        console.log("Video can play------------", video)
+                      }
                     />
                   ) : image ? (
                     <img
@@ -169,17 +219,30 @@ export default function StoryPreview({ stories = [] }) {
                       alt={`story-${idx}`}
                       className={styles.storyMedia}
                       onError={(e) => {
+                        console.error(
+                          "Image failed to load------------------",
+                          image,
+                          e
+                        );
                         const altImage =
                           story.display_resources?.[1]?.src ||
                           story.image_versions?.low_resolution?.url;
                         if (altImage && e.target.src !== altImage) {
+                          console.log("Trying alternative image:", altImage);
                           e.target.src = altImage;
                         }
                       }}
+                      onLoad={() =>
+                        console.log(
+                          "Image loaded successfully---------------",
+                          image
+                        )
+                      }
                     />
                   ) : (
                     <div className={styles.storyPlaceholder}>
-                      <p>Story content not available</p>
+                      <p>No media URL found</p>
+                      <small>Check console for details</small>
                     </div>
                   )}
 
@@ -188,7 +251,7 @@ export default function StoryPreview({ stories = [] }) {
                       {story.user?.profile_pic_url && (
                         <img
                           src={story.user.profile_pic_url}
-                          alt={story.user?.username}
+                          alt={story.user?.username || "User"}
                           className={styles.storyAvatar}
                           onError={(e) => (e.target.style.display = "none")}
                         />
@@ -221,20 +284,23 @@ export default function StoryPreview({ stories = [] }) {
         </Swiper>
         <SwiperNavigation swiper={swiperInstance} />
       </div>
-      <div className={styles.shareDownload}>
-        <button
-          className={styles.shareBtn}
-          onClick={() => handleDownloadAll(mediaUrls)}
-        >
-          Download All
-        </button>
-        <button
-          className={styles.shareBtn}
-          onClick={() => handleShareAll(mediaUrls)}
-        >
-          Share All
-        </button>
-      </div>
+
+      {mediaUrls.length > 0 && (
+        <div className={styles.shareDownload}>
+          <button
+            className={styles.shareBtn}
+            onClick={() => handleDownloadAll(mediaUrls)}
+          >
+            Download All ({mediaUrls.length})
+          </button>
+          <button
+            className={styles.shareBtn}
+            onClick={() => handleShareAll(mediaUrls)}
+          >
+            Share All
+          </button>
+        </div>
+      )}
 
       <MediaGallery mediaUrls={mediaUrls} />
     </>

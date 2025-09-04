@@ -1,4 +1,5 @@
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
+import { features } from "@/dataStore/whyUsData";
 import {
   Header,
   Footer,
@@ -30,27 +31,31 @@ export default function Home() {
         image={Images.Download}
         title="Instagram Videos and Photos Download"
         description="InstaDl is an online web tool that helps you download Instagram Videos, Photos, Reels, and IGTV. InstaDl.app is designed to be easy to use on any device, such as a mobile phone, tablet, or computer."
-        heading="How to download from Instagram?"
+        heading="How to Download Instagram Content?"
         smallDescription="You must follow these three easy steps to download video, reels, and photo from Instagram (IG, Insta). Follow the simple steps below."
         steps={steps}
       />
-      <WhyUs />
+      <WhyUs
+        title="Use InstaDl to download from Instagram."
+        description="You can download videos in just two clicks, and the quality stays the same. Avoid using unreliable applications and appreciate the videos, even if they are of lower quality."
+        features={features}
+      />
       <DownloadDescription
         heading="InstaDl.app features"
-        headingDescription="With InstaDl you can download any type of content from Instagram. Our service has an IG video downloader, Reels, IGTV, photo or carousel."
+        headingDescription="With InstaDl you can download any type of content from Instagram. With our tool, you can download Instagram videos, Reels, IGTV content, photos, and carousels."
         image={Images.videoImg2}
         title="Video Downloader"
-        description="InstaDl.app supports Instagram video download for singular videos and multiple videos from carousels. InstaDl is created to enable you to download IG videos from your personal page."
+        description="InstaDl.app supports Instagram video download for singular videos and multiple videos from carousels. InstaDl is designed to let you download Instagram videos from your own page."
         link="/video"
         secondImage={Images.DownloadTwo}
         secondTitle="Photos Downloader"
-        secondDescription="Instagram photo download provided by InstaDl.app is a great tool for saving images from Instagram posts. With InstaDl, you can download a single post image and multiple Instagram photos (carousel)."
+        secondDescription="Instagram photo download provided by InstaDl.app is a great tool for saving images from Instagram posts. With InstaDl, You can save either a single post image or multiple Instagram photos (carousel)."
         secondLink="/photo"
       />
       <DownloadDescription
         image={Images.videoImg1}
         title="Reels Downloader"
-        description="Reels is a new video format that clones the principle of TikTok. Instagram Reels download with the help of InstaDl. Our Instagram Reels downloader can help you to save your favorite Reels videos."
+        description="Reels is a new video format that clones the principle of TikTok. Instagram Reels download with the help of InstaDl. Our Instagram Reels downloader lets you save your favorite Reels with ease."
         link="/reels"
         secondImage={Images.videoImg2}
         secondTitle="IGTV Downloader"
@@ -67,7 +72,7 @@ export default function Home() {
       <AppPromotion mobileImg={Images.mobile} />
       <FaqSection
         title="Frequently asked questions (FAQ)"
-        intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If you can't find the answer to your question, you can email us through our contact page."
+        intro="This FAQ answers common questions and worries about InstaDl.app, which is a tool to download public Instagram content. If your question isn’t covered, you can get in touch with us by sending an email through our contact page."
         image={Images.Download}
         faqs={faqs}
       />

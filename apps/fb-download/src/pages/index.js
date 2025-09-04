@@ -1,4 +1,5 @@
 import { mainNavLinks, legalLinks } from "@/dataStore/linksContent";
+import { features } from "@/dataStore/whyUsData";
 import {
   Header,
   Footer,
@@ -29,28 +30,32 @@ export default function Home() {
       <AboutProcess
         image={Images.Download}
         title="Facebook Videos and Photos Download"
-        description="FacebookDl is an online web tool that helps you download Facebook Videos, Photos, Reels, and IGTV. FacebookDl.app is designed to be easy to use on any device, such as a mobile phone, tablet, or computer."
-        heading="How to download from Facebook?"
-        smallDescription="You must follow these three easy steps to download video, reels, and photo from Facebook. Follow the simple steps below."
+        description="FacebookDl is an online web tool that helps you download Facebook Videos, Photos, Reels, Story. FacebookDl.app is designed to be easy to use on any device, such as a mobile phone, tablet, or computer."
+        heading="How to Download Facebook Content?"
+        smallDescription="You must follow these three easy steps to download video, reels, story and photo from Facebook. Follow the simple steps below."
         steps={steps}
       />
-      <WhyUs />
+      <WhyUs
+        title="Use FacebookDl to download from Facebook"
+        description="You can download videos in just two clicks, and the quality stays the same. Avoid using unreliable applications and appreciate the videos, even if they are of lower quality."
+        features={features}
+      />
       <DownloadDescription
-        heading="FacebookDl.app features"
-        headingDescription="With FacebookDl you can download any type of content from Facebook. Our service has an IG video downloader, Reels, story & photo."
+        heading="Features of FacebookDl"
+        headingDescription="With FacebookDl you can download any type of content from Facebook. Our service includes a video downloader along with support for Reels, Stories, and photos."
         image={Images.videoImg2}
         title="Video Downloader"
-        description="FacebookDl.app supports Facebook video download for singular videos and multiple videos from carousels. FacebookDl is created to enable you to download IG videos from your personal page."
+        description="FacebookDl.app supports Facebook video download for videos. FacebookDl is created to enable you to download videos from your personal page."
         link="/video"
         secondImage={Images.DownloadTwo}
         secondTitle="Photos Downloader"
-        secondDescription="Facebook photo download provided by FacebookDl.app is a great tool for saving images from Facebook posts. With FacebookDl, you can download a single post image and multiple Facebook photos (carousel)."
+        secondDescription="Facebook photo download provided by FacebookDl.app is a great tool for saving images from Facebook posts. With FacebookDl, You can save either a single post image or multiple Facebook photos."
         secondLink="/photo"
       />
       <DownloadDescription
         image={Images.videoImg1}
         title="Reels Downloader"
-        description="Reels is a new video format that clones the principle of TikTok. Facebook Reels download with the help of FacebookDl. Our Facebook Reels downloader can help you to save your favorite Reels videos."
+        description="Reels represents a modern video style designed for quick, engaging clips.Facebook Reels download with the help of FacebookDl. Our Facebook Reels downloader can help you to save your favorite Reels videos."
         link="/reels"
         secondImage={Images.videoImg3}
         secondTitle="Story Downloader"
@@ -62,7 +67,7 @@ export default function Home() {
       <AppPromotion mobileImg={Images.mobile} appHeight={377} />
       <FaqSection
         title="Frequently asked questions (FAQ)"
-        intro="This FAQ answers common questions and worries about FacebookDl.app, which is a tool to download public Facebook content. If you can't find the answer to your question, you can email us through our contact page."
+        intro="This FAQ answers common questions and worries about FacebookDl.app, which is a tool to download public Facebook content.If your question isn’t covered, you can get in touch with us by sending an email through our contact page."
         image={Images.Download}
         faqs={faqs}
       />

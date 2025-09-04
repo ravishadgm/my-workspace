@@ -76,6 +76,7 @@ function respondOr404(result, res) {
         mediaUrls: mediaUrls.length ? mediaUrls : first ? [first] : [],
         thumbnail: result.thumbnail || (type === "photo" ? first : null),
         title: result.title || null,
+        caption: result.caption || null,
         normalizedUrl: result.normalizedUrl || null,
         media,
         ...result,
